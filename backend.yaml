@@ -24,3 +24,30 @@
         path: /app
         state: directory
 
+    - name: download backend code 
+      ansible.builtin.get_url:
+       url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+       dest: /tmp/backend.zip
+
+    - name: unzip backend code
+      ansible.builtin.unarchive:
+        src: /tmp/backend.zip
+        dest: /app
+        remote_src: yes
+    - name: insatll npm 
+      ansible.builtin.command:
+      args:
+        chdir: /app
+    - name: copy backend service
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /etc/systemd/system/backend.service
+          
+
+
+            
+
+
+
+
+
