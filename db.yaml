@@ -11,4 +11,5 @@
       name: mysqld
       state: started
       enabled: yes
+      state: stopped
  
