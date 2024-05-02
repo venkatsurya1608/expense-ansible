@@ -34,10 +34,12 @@
         src: /tmp/backend.zip
         dest: /app
         remote_src: yes
-    - name: insatll npm 
-      ansible.builtin.command:
+
+    - name: insatll npm dependencies
+      ansible.builtin.command: npm install
       args:
         chdir: /app
+
     - name: copy backend service
       ansible.builtin.copy:
         src: backend.service
