@@ -18,6 +18,13 @@
       state: started
       enabled: yes
 
+  - name: insatll mysql depenency
+    ansible.builtin.pip:
+      name:
+      - PyMySQL
+      - cryptography
+      executable: pip3.9
+
   - name: check db connection
     community.mysql.mysql_info:
       login_user: root
