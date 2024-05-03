@@ -1,6 +1,9 @@
 - name: confirure of backend
   hosts: backend
   become: yes
+  vars:
+    login_host: db.venkatdevops1608.online
+    login_password: ExpenseApp@1
   tasks:
     - name: disable default nodejs
       ansible.builtin.command: dnf module disable nodejs -y
@@ -51,6 +54,17 @@
         - PyMySQL 
         - cryptography
         executable: pip3.9
+
+    - name: import data into mysql
+      community.mysql.mysql_db:
+        login_user: root
+        login_password: "{{ login_password }}"
+        login_host: "{{ login_host }}"
+        target: /app/schema/backend.sql
+        state: import
+        name: all
+
+
 
     - name: backend daemon reload
       ansible.builtin.systemd_service:
