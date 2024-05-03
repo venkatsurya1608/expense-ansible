@@ -51,10 +51,11 @@
         - PyMySQL 
         - cryptography
         executable: pip3.9
-        
+
     - name: backend daemon reload
       ansible.builtin.systemd_service:
-      daemon_reloaded: true
+        daemon_reloaded: true
+
     - name: start and enabled backend server
       ansible.builtin.service:
         name: backend
